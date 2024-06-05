@@ -29,7 +29,7 @@ app.post('/create_post', async (req, res) => {
         db.close();
     });
 
-    await axios.post('http://localhost:4009/events', {
+    await axios.post('http://localhost:3214/events', {
         type: 'PostCreated',
         data: 'postid'
     });
@@ -101,6 +101,6 @@ app.post('/events', async (req, res) => {
 })
 
 
-app.listen(4002, () => {
-    console.log('Post service listening on port 4002...');
+app.listen(3207, () => {
+    console.log('Post service listening on port 3207...');
 })
