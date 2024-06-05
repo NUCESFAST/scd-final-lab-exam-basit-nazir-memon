@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: i211205-classrooms-deployment
+  labels:
+    app: classrooms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: classrooms
+  template:
+    metadata:
+      labels:
+        app: classrooms
+    spec:
+      containers:
+      - name: classrooms-server
+        image: basitnazir/scdfinal-classrooms:latest
+        ports:
+        - containerPort: 3206
+      # Add volume mounts or environment variables for interacting with MongoDB
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: i211205-classrooms-service
+spec:
+  selector:
+    app: classrooms
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 3206
+    targetPort: 3206
